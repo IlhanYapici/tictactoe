@@ -1,0 +1,50 @@
+.icons-container {
+	position: relative;
+	height: 16px;
+	width: 16px;
+}
+
+.sun-icon {
+	position: absolute;
+}
+
+.moon-icon {
+	position: absolute;
+}
+
+.onEntranceSun {
+	animation: onEntrance 800ms cubic-bezier(0.5, 1, 0.89, 1) 0s 1 normal forwards;
+}
+
+.onEntranceMoon {
+	animation: onEntrance 800ms cubic-bezier(0.34, 1.56, 0.64, 1) 0s 1 normal
+		forwards;
+}
+
+.onExit {
+	animation: onExit 800ms cubic-bezier(0.76, 0, 0.24, 1) 0s 1 reverse forwards;
+}
+
+@keyframes onEntrance {
+	0% {
+		opacity: 0;
+		transform: rotate(-540deg) scale(1.5);
+	}
+
+	100% {
+		opacity: 1;
+		transform: rotate(0) scale(1);
+	}
+}
+
+@keyframes onExit {
+	0% {
+		opacity: 0;
+		transform: rotate(-540deg) scale(1.5);
+	}
+
+	100% {
+		opacity: 1;
+		transform: rotate(0) scale(1);
+	}
+}

@@ -1,0 +1,44 @@
+.grid-tile {
+	background-color: var(--chakra-colors-chakra-body-bg);
+}
+
+.grid-tile path {
+	stroke: var(--chakra-colors-chakra-body-text);
+}
+
+.enabled-tile {
+	cursor: pointer;
+}
+
+.disabled-tile {
+	pointer-events: none;
+}
+
+.circle-icon,
+.cross-icon {
+	animation: flashIn 750ms cubic-bezier(0.16, 1, 0.3, 1) 0s 1 normal forwards;
+}
+
+.circle-icon {
+	font-size: 20vh;
+}
+
+.cross-icon {
+	font-size: 18vh;
+}
+
+/* - - - - - -  -  -  - - - - - */
+/*          ANIMATIONS          */
+/* - - - - - -  -  -  - - - - - */
+
+@keyframes flashIn {
+	0% {
+		transform: scale(2);
+		filter: blur(0.5rem);
+	}
+
+	100% {
+		transform: scale(1);
+		filter: blur(0);
+	}
+}
