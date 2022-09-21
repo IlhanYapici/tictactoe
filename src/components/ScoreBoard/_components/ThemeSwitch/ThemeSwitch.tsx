@@ -31,7 +31,7 @@ function ThemeSwitch() {
 	}, [colorMode])
 
 	return (
-		<HStack position="absolute" top={5} right={5}>
+		<HStack fontSize="1rem !important">
 			<div className="icons-container">
 				<SunIcon className={getClassNames("sun")} />
 				<MoonIcon className={getClassNames("moon")} />

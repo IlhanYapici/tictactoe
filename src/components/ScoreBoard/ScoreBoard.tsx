@@ -19,25 +19,41 @@ function ScoreBoard() {
 
 	return (
 		<Box w="100%" position="absolute" top={0} left={0}>
-			<Menu />
 			<Grid
 				h="50px"
-				gridTemplateColumns="1fr 50px 1fr"
+				gridTemplateColumns="75px 1fr 75px 1fr 75px"
 				justifyItems="center"
 				alignItems="center"
-				gap="1.5rem"
+				gap="1rem"
 				fontSize="1.5rem"
 				fontWeight="bold"
+				borderBottom="0.2rem solid #3182ce"
 			>
+				<Menu />
 				<Text>{players.player1}</Text>
 
-				<Text lineHeight={1} height="fit-content">
-					{score.player1} - {score.player2}
-				</Text>
+				<Box
+					w="100%"
+					h="100%"
+					display="flex"
+					flexDir="row"
+					justifyContent="space-evenly"
+					alignItems="center"
+					backgroundColor="#3182ce"
+					color="#fff"
+				>
+					<Text lineHeight={1} height="fit-content">
+						{score.player1}
+					</Text>
+					-
+					<Text lineHeight={1} height="fit-content">
+						{score.player2}
+					</Text>
+				</Box>
 
 				<Text>{players.player2}</Text>
+				<ThemeSwitch />
 			</Grid>
-			<ThemeSwitch />
 		</Box>
 	)
 }

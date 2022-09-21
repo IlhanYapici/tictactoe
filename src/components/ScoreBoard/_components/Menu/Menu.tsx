@@ -94,9 +94,6 @@ function Menu() {
 			<IconButton
 				aria-label="Open settings"
 				icon={<SettingsIcon />}
-				position="absolute"
-				top="5px"
-				left="5px"
 				variant="solid"
 				onClick={onOpen}
 			/>
