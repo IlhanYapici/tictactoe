@@ -9,7 +9,7 @@ function checkBoardState(ctx: IGameContext) {
 		functions: { updateCurrentPlayer, setWinner, updateScore }
 	} = ctx
 
-	if (checkRows(board) || checkColumns(board)) {
+	if (checkRows(board) || checkColumns(board) || checkDiags(board)) {
 		updateScore(currentPlayer)
 		setWinner(currentPlayer)
 	} else {
@@ -49,6 +49,27 @@ function checkRows(board: TBoard) {
 	return false
 }
 
-function checkDiag(board: TBoard) {}
+function checkDiags(board: TBoard) {
+	let diag1: boolean = false
+	let diag2: boolean = false
+
+	if (
+		board[0][0] !== null &&
+		board[0][0] === board[1][1] &&
+		board[1][1] === board[2][2]
+	) {
+		diag1 = true
+	}
+
+	if (
+		board[2][0] !== null &&
+		board[2][0] === board[1][1] &&
+		board[2][0] === board[0][2]
+	) {
+		diag2 = true
+	}
+
+	return diag1 === true || diag2 === true
+}
 
 export { checkBoardState }
