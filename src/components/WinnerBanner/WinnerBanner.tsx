@@ -39,7 +39,7 @@ function WinnerBanner() {
 		}
 	}
 
-	return (
+	return winner !== null ? (
 		<Box
 			zIndex={10}
 			display="flex"
@@ -52,7 +52,7 @@ function WinnerBanner() {
 		>
 			{getWinner()}
 		</Box>
-	)
+	) : null
 }
 
 export { WinnerBanner }
