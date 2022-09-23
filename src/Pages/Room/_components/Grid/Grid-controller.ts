@@ -1,11 +1,11 @@
 import {
 	IGameContext,
 	TBoard
-} from "../../context/GameContext/GameContext-types"
+} from '../../../../context/GameContext/GameContext-types'
 
 function checkBoardState(ctx: IGameContext) {
 	const {
-		state: { board, currentPlayer, score },
+		state: { board, currentPlayer },
 		functions: { updateCurrentPlayer, setWinner, updateScore }
 	} = ctx
 

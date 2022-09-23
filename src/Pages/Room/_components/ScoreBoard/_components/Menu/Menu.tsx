@@ -1,5 +1,5 @@
-import { useState, useContext } from "react"
-import { FiSettings as SettingsIcon } from "react-icons/fi"
+import { useState, useContext } from 'react'
+import { FiSettings as SettingsIcon } from 'react-icons/fi'
 import {
 	IconButton,
 	Button,
@@ -16,10 +16,10 @@ import {
 	Input,
 	ModalFooter,
 	Tooltip
-} from "@chakra-ui/react"
+} from '@chakra-ui/react'
 
-import { IPlayers } from "../../../../context/GameContext/GameContext-types"
-import { GameContext } from "../../../../context/GameContext/GameContext"
+import { GameContext } from '../../../../../../context/GameContext/GameContext'
+import { IPlayers } from '../../../../../../context/GameContext/GameContext-types'
 
 function Menu() {
 	const { isOpen, onOpen, onClose } = useDisclosure()

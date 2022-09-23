@@ -1,48 +1,39 @@
-import { IconButton, Box, Text, useColorMode } from '@chakra-ui/react'
+import { Box, Text, useColorMode } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
-import {
-	HiOutlineUsers as MultiplayerOutlineIcon,
-	HiUsers as MultiplayerSolidIcon,
-	HiOutlineUser as OfflineOutlineIcon,
-	HiUser as OfflineSolidIcon
-} from 'react-icons/hi'
+import {} from 'react-icons/hi'
+
+import { OfflineButton } from './_components/OfflineButton/OfflineButton'
+import { MultiplayerButton } from './_components/MultiplayerButton/MultiplayerButton'
+import { HomeMenu } from './_components/HomeMenu/HomeMenu'
 
 export function Home() {
-	const { colorMode } = useColorMode()
-	const navigate = useNavigate()
 	return (
-		<Box
-			width="30vw"
-			height="fit-content"
-			display="flex"
-			flexDir="row"
-			justifyContent="space-evenly"
-		>
-			<IconButton
-				aria-label="multiplayer-mode-button"
-				height="12.5rem"
-				width="12.5rem"
-				onClick={() => navigate('')}
-				fontSize="3rem"
-				icon={
-					colorMode === 'light' ? (
-						<MultiplayerOutlineIcon />
-					) : (
-						<MultiplayerSolidIcon />
-					)
-				}
-				disabled={!navigator.onLine}
-			/>
-			<IconButton
-				aria-label="offline-mode-button"
-				height="12.5rem"
-				width="12.5rem"
-				onClick={() => navigate('/room/offline')}
-				fontSize="3rem"
-				icon={
-					colorMode === 'light' ? <OfflineOutlineIcon /> : <OfflineSolidIcon />
-				}
-			/>
-		</Box>
+		<>
+			<Box
+				position="absolute"
+				top="0"
+				width="100%"
+				height="60px"
+				display="flex"
+				flexDir="row"
+				justifyContent="center"
+				alignItems="center"
+			>
+				<HomeMenu />
+				<Text fontSize="3rem" fontWeight="bold" lineHeight="1">
+					TicTacToe
+				</Text>
+			</Box>
+			<Box
+				width="30vw"
+				height="fit-content"
+				display="flex"
+				flexDir="row"
+				justifyContent="space-evenly"
+			>
+				<OfflineButton />
+				<MultiplayerButton />
+			</Box>
+		</>
 	)
 }

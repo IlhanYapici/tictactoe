@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Outlet } from 'react-router-dom'
 import { useToast } from '@chakra-ui/react'
 import { useEffect } from 'react'
 
@@ -39,7 +39,7 @@ function App() {
 			<Routes>
 				<Route path="/">
 					<Route index element={<Home />} />
-					<Route path="room" element={<RoomLayout />}>
+					<Route path="room" element={<Outlet />}>
 						<Route path=":roomId" element={<Room />} />
 					</Route>
 				</Route>
