@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react"
 import { useContext, useEffect, useState } from "react"
 
 import { IBoxStyling } from "./WinningStrike-types"
-import { GameContext } from "../../../../context/GameContext/GameContext"
+import { GameContext } from "../../../../../../context/GameContext/GameContext"
 
 function WinningStrike() {
 	const [boxStyling, setBoxStyling] = useState<string>("")
