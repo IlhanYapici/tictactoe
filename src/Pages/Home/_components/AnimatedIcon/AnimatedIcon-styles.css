@@ -30,12 +30,12 @@
 }
 
 .onOpenLine1 {
-	animation: onOpenLine1 350ms cubic-bezier(0.34, 1.56, 0.64, 1) 0s 1 normal
+	animation: onOpenLine1 250ms cubic-bezier(0.16, 1, 0.3, 1) 0s 1 normal
 		forwards;
 }
 
 .onOpenLine2 {
-	animation: onOpenLine2 350ms cubic-bezier(0.34, 1.56, 0.64, 1) 0s 1 normal
+	animation: onOpenLine2 250ms cubic-bezier(0.16, 1, 0.3, 1) 0s 1 normal
 		forwards;
 }
 
