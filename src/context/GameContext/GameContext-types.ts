@@ -1,6 +1,19 @@
 import { Dispatch, ReactNode, SetStateAction } from "react"
 
-type TPlayer = 1 | 2
+type TGridPos = 0 | 1 | 2
+
+interface IGameFunctions {
+	updateCurrentPlayer: () => void
+	updateScore: (player: TPlayer) => void
+	updateBoard: (player: TPlayer, row: TGridPos, column: TGridPos) => void
+	updatePlayers: (players: IPlayers) => void
+	setWinner: Dispatch<SetStateAction<TPlayer | null>>
+	setWinnerStrike: (position: TLiningPos, lining: TLining) => void
+}
+
+type TLiningPos = "row" | "column" | "diagonal"
+
+type TLining = TGridPos | "topLeftBottomRight" | "bottomLeftTopRight"
 
 type TBoardItem = TPlayer | null
 
@@ -10,20 +23,12 @@ type TBoard = [
 	[TBoardItem, TBoardItem, TBoardItem]
 ]
 
-type TGridPos = 0 | 1 | 2
-
-interface IGameFunctions {
-	updateCurrentPlayer: () => void
-	updateScore: (player: TPlayer) => void
-	updateBoard: (player: TPlayer, row: TGridPos, column: TGridPos) => void
-	updatePlayers: (players: IPlayers) => void
-	setWinner: Dispatch<SetStateAction<TPlayer | null>>
-}
-
 interface IScore {
 	player1: number
 	player2: number
 }
+
+type TPlayer = 1 | 2
 
 interface IPlayers {
 	player1: string
@@ -36,6 +41,10 @@ interface IGameState {
 	score: IScore
 	board: TBoard
 	winner: TPlayer | null
+	winnerStrike: {
+		position: TLiningPos | null
+		lining: TLining | null
+	}
 }
 
 interface IGameContext {
@@ -54,5 +63,7 @@ export type {
 	IPlayers,
 	TPlayer,
 	TBoard,
-	TGridPos
+	TGridPos,
+	TLining,
+	TLiningPos
 }

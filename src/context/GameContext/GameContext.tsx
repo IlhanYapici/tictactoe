@@ -7,7 +7,9 @@ import {
 	IPlayers,
 	TPlayer,
 	TBoard,
-	TGridPos
+	TGridPos,
+	TLiningPos,
+	TLining
 } from "./GameContext-types"
 
 const GameContext = createContext({} as IGameContext)
@@ -25,6 +27,8 @@ function GameProvider({ children }: IGameProviderProps) {
 	const [player, setPlayer] = useState<TPlayer>(2)
 	const [winner, setWinner] = useState<TPlayer | null>(null)
 	const [score, setScore] = useState<IScore>({ player1: 0, player2: 0 })
+	const [position, setPosition] = useState<TLiningPos | null>(null)
+	const [lining, setLining] = useState<TLining | null>(null)
 	const [board, setBoard] = useState<TBoard>([
 		[null, null, null],
 		[null, null, null],
@@ -58,6 +62,11 @@ function GameProvider({ children }: IGameProviderProps) {
 		}
 	}
 
+	const setWinnerStrike = (position: TLiningPos, lining: TLining) => {
+		setPosition(position)
+		setLining(lining)
+	}
+
 	let ctx: IGameContext = {
 		state: {
 			players: players,
@@ -67,7 +76,11 @@ function GameProvider({ children }: IGameProviderProps) {
 				player1: score.player1,
 				player2: score.player2
 			},
-			winner: winner
+			winner: winner,
+			winnerStrike: {
+				position: position,
+				lining: lining
+			}
 		},
 		//TODO: implement resetBoard and resetGame
 		functions: {
@@ -75,7 +88,8 @@ function GameProvider({ children }: IGameProviderProps) {
 			updateCurrentPlayer,
 			updateBoard,
 			updateScore,
-			setWinner
+			setWinner,
+			setWinnerStrike
 		}
 	}
 

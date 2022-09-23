@@ -1,23 +1,26 @@
 import {
 	IGameContext,
-	TBoard
-} from '../../../../context/GameContext/GameContext-types'
+	TGridPos
+} from "../../../../context/GameContext/GameContext-types"
 
 function checkBoardState(ctx: IGameContext) {
 	const {
-		state: { board, currentPlayer },
-		functions: { updateCurrentPlayer, setWinner, updateScore }
+		functions: { updateCurrentPlayer }
 	} = ctx
 
-	if (checkRows(board) || checkColumns(board) || checkDiags(board)) {
-		updateScore(currentPlayer)
-		setWinner(currentPlayer)
+	if (checkRows(ctx) || checkColumns(ctx) || checkDiags(ctx)) {
+		return
 	} else {
 		updateCurrentPlayer()
 	}
 }
 
-function checkColumns(board: TBoard) {
+function checkColumns(ctx: IGameContext) {
+	const {
+		state: { board, currentPlayer },
+		functions: { setWinner, updateScore, setWinnerStrike }
+	} = ctx
+
 	for (let i = 0; i < 3; i++) {
 		let samePlayer: boolean = true
 
@@ -27,13 +30,24 @@ function checkColumns(board: TBoard) {
 			}
 		}
 
-		if (samePlayer) return true
+		if (samePlayer) {
+			setWinner(currentPlayer)
+			updateScore(currentPlayer)
+			setWinnerStrike("column", i as TGridPos)
+
+			return true
+		}
 	}
 
 	return false
 }
 
-function checkRows(board: TBoard) {
+function checkRows(ctx: IGameContext) {
+	const {
+		state: { board, currentPlayer },
+		functions: { setWinner, updateScore, setWinnerStrike }
+	} = ctx
+
 	for (let i = 0; i < 3; i++) {
 		let samePlayer: boolean = true
 
@@ -43,13 +57,24 @@ function checkRows(board: TBoard) {
 			}
 		}
 
-		if (samePlayer) return true
+		if (samePlayer) {
+			setWinner(currentPlayer)
+			updateScore(currentPlayer)
+			setWinnerStrike("row", i as TGridPos)
+
+			return true
+		}
 	}
 
 	return false
 }
 
-function checkDiags(board: TBoard) {
+function checkDiags(ctx: IGameContext) {
+	const {
+		state: { board, currentPlayer },
+		functions: { setWinner, updateScore, setWinnerStrike }
+	} = ctx
+
 	let diag1: boolean = false
 	let diag2: boolean = false
 
@@ -59,6 +84,9 @@ function checkDiags(board: TBoard) {
 		board[1][1] === board[2][2]
 	) {
 		diag1 = true
+		setWinner(currentPlayer)
+		updateScore(currentPlayer)
+		setWinnerStrike("diagonal", "topLeftBottomRight")
 	}
 
 	if (
@@ -67,6 +95,10 @@ function checkDiags(board: TBoard) {
 		board[2][0] === board[0][2]
 	) {
 		diag2 = true
+
+		setWinner(currentPlayer)
+		updateScore(currentPlayer)
+		setWinnerStrike("diagonal", "bottomLeftTopRight")
 	}
 
 	return diag1 === true || diag2 === true
