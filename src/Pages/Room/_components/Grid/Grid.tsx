@@ -5,7 +5,7 @@ import { checkBoardState } from "./Grid-controller"
 import { Tile } from "./_components/Tile/Tile"
 import { TDataId } from "./_components/Tile/Tile-types"
 import { Background } from "./_components/Background/Background"
-import { GameContext } from "../../context/GameContext/GameContext"
+import { GameContext } from "../../../../context/GameContext/GameContext"
 import { WinningStrike } from "./_components/WinningStrike/WinningStrike"
 
 function GridContainer() {

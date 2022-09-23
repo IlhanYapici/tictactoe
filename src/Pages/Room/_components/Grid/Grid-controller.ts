@@ -1,7 +1,7 @@
 import {
 	IGameContext,
 	TGridPos
-} from "../../context/GameContext/GameContext-types"
+} from "../../../../context/GameContext/GameContext-types"
 
 function checkBoardState(ctx: IGameContext) {
 	const {

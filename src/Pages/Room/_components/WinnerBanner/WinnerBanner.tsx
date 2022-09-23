@@ -1,6 +1,6 @@
 import { Box, Text, useColorMode } from '@chakra-ui/react'
 import { useContext } from 'react'
-import { GameContext } from '../../context/GameContext/GameContext'
+import { GameContext } from '../../../../context/GameContext/GameContext'
 
 function WinnerBanner() {
 	const { colorMode } = useColorMode()

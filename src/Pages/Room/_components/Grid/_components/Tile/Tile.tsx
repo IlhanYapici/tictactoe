@@ -1,11 +1,11 @@
-import { useState, useContext } from "react"
-import { GridItem, Box } from "@chakra-ui/react"
+import { useState, useContext } from 'react'
+import { GridItem, Box } from '@chakra-ui/react'
 
-import { ITileProps } from "./Tile-types"
-import { useDataId, usePlayerIcon } from "./Tile-controller"
-import { GameContext } from "../../../../context/GameContext/GameContext"
+import { ITileProps } from './Tile-types'
+import { useDataId, usePlayerIcon } from './Tile-controller'
+import { GameContext } from '../../../../../../context/GameContext/GameContext'
 
-import "./Tile-styles.css"
+import './Tile-styles.css'
 
 function Tile({ dataId, ...props }: ITileProps) {
 	const [clicked, setClicked] = useState<boolean>(false)
@@ -30,8 +30,8 @@ function Tile({ dataId, ...props }: ITileProps) {
 	}
 
 	let classNames =
-		"grid-tile " +
-		(clicked || winner !== null ? "disabled-tile" : "enabled-tile")
+		'grid-tile ' +
+		(clicked || winner !== null ? 'disabled-tile' : 'enabled-tile')
 
 	return (
 		<GridItem

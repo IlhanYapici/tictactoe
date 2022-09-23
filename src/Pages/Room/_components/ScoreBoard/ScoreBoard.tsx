@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext } from 'react'
 import {
 	Box,
 	Grid,
@@ -6,11 +6,11 @@ import {
 	EditableInput,
 	EditablePreview,
 	Text
-} from "@chakra-ui/react"
+} from '@chakra-ui/react'
 
-import { Menu } from "./_components/Menu/Menu"
-import { GameContext } from "../../context/GameContext/GameContext"
-import { ThemeSwitch } from "./_components/ThemeSwitch/ThemeSwitch"
+import { Menu } from './_components/Menu/Menu'
+import { ThemeSwitch } from './_components/ThemeSwitch/ThemeSwitch'
+import { GameContext } from '../../../../context/GameContext/GameContext'
 
 function ScoreBoard() {
 	const {
