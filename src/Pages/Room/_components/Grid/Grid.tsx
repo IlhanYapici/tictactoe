@@ -6,6 +6,7 @@ import { Tile } from "./_components/Tile/Tile"
 import { TDataId } from "./_components/Tile/Tile-types"
 import { Background } from "./_components/Background/Background"
 import { GameContext } from "../../context/GameContext/GameContext"
+import { WinningStrike } from "./_components/WinningStrike/WinningStrike"
 
 function GridContainer() {
 	const ctx = useContext(GameContext)
@@ -39,6 +40,7 @@ function GridContainer() {
 			placeItems="center"
 			gap="2vh"
 		>
+			<WinningStrike />
 			{setupGrid()}
 			<Background />
 		</Grid>
