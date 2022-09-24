@@ -103,7 +103,6 @@ function GameProvider({ children }: IGameProviderProps) {
 				lining: lining
 			}
 		},
-		//TODO: implement resetBoard and resetGame
 		functions: {
 			updatePlayers: setPlayers,
 			updateCurrentPlayer,
