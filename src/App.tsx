@@ -1,13 +1,14 @@
-import { Routes, Route, Outlet } from 'react-router-dom'
-import { useToast } from '@chakra-ui/react'
-import { useEffect } from 'react'
+import { Routes, Route, Outlet } from "react-router-dom"
+import { useToast } from "@chakra-ui/react"
+import { useEffect } from "react"
 
-import { RoomLayout } from './Pages/Room/RoomLayout'
-import { GameProvider } from './context/GameContext/GameContext'
+import { GameProvider } from "./context/GameContext/GameContext"
+import { Room } from "./Pages/Room/Room"
+import { OfflineGrid } from "./Pages/OfflineGrid/OfflineGrid"
+import { RoomLayout } from "./Pages/Room/RoomLayout"
+import { Home } from "./Pages/Home/Home"
 
-import './App.css'
-import { Room } from './Pages/Room/Room'
-import { Home } from './Pages/Home/Home'
+import "./App.css"
 
 function App() {
 	const toast = useToast()
@@ -17,15 +18,15 @@ function App() {
 			if (navigator.onLine) {
 				toast({
 					title: "You're connected!",
-					description: 'You can play online against other players.',
-					status: 'success',
+					description: "You can play online against other players.",
+					status: "success",
 					duration: 5000
 				})
 			} else {
 				toast({
-					title: 'No internet connexion x(',
+					title: "No internet connexion x(",
 					description: "You can't play online...",
-					status: 'error',
+					status: "error",
 					duration: 5000
 				})
 			}
@@ -39,7 +40,8 @@ function App() {
 			<Routes>
 				<Route path="/">
 					<Route index element={<Home />} />
-					<Route path="room" element={<Outlet />}>
+					<Route path="offline" element={<OfflineGrid />} />
+					<Route path="room" element={<RoomLayout />}>
 						<Route path=":roomId" element={<Room />} />
 					</Route>
 				</Route>

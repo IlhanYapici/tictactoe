@@ -9,6 +9,8 @@ interface IGameFunctions {
 	updatePlayers: (players: IPlayers) => void
 	setWinner: Dispatch<SetStateAction<TPlayer | null>>
 	setWinnerStrike: (position: TLiningPos, lining: TLining) => void
+	resetContext: () => void
+	resetBoard: () => void
 }
 
 type TLiningPos = "row" | "column" | "diagonal"

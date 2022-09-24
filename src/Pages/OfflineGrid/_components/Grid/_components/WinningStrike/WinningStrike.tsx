@@ -15,7 +15,6 @@ function WinningStrike() {
 
 		switch (position) {
 			case "row":
-				console.log({ position, lining })
 				break
 			case "column":
 				if (lining === 0) {
@@ -31,7 +30,6 @@ function WinningStrike() {
 					break
 				}
 			case "diagonal":
-				console.log({ position, lining })
 				break
 		}
 	}

@@ -10,6 +10,9 @@ import { WinningStrike } from "./_components/WinningStrike/WinningStrike"
 
 function GridContainer() {
 	const ctx = useContext(GameContext)
+	const {
+		state: { winner, board }
+	} = ctx
 
 	const setupGrid = () => {
 		const grid = []
@@ -25,10 +28,10 @@ function GridContainer() {
 	}
 
 	useEffect(() => {
-		if (ctx.state.winner === null) {
+		if (winner === null) {
 			checkBoardState(ctx)
 		}
-	}, [ctx.state.board])
+	}, [board])
 
 	return (
 		<Grid

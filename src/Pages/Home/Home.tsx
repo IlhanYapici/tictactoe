@@ -1,12 +1,20 @@
-import { Box, Text, useColorMode } from '@chakra-ui/react'
-import { useNavigate } from 'react-router-dom'
-import {} from 'react-icons/hi'
+import { Box, Text } from "@chakra-ui/react"
+import { useContext, useEffect } from "react"
 
-import { OfflineButton } from './_components/OfflineButton/OfflineButton'
-import { MultiplayerButton } from './_components/MultiplayerButton/MultiplayerButton'
-import { HomeMenu } from './_components/HomeMenu/HomeMenu'
+import { OfflineButton } from "./_components/OfflineButton/OfflineButton"
+import { MultiplayerButton } from "./_components/MultiplayerButton/MultiplayerButton"
+import { HomeMenu } from "./_components/HomeMenu/HomeMenu"
+import { GameContext } from "../../context/GameContext/GameContext"
 
 export function Home() {
+	const {
+		functions: { resetContext }
+	} = useContext(GameContext)
+
+	useEffect(() => {
+		resetContext()
+	}, [])
+
 	return (
 		<>
 			<Box

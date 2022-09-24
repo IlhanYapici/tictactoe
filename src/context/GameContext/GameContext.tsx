@@ -67,6 +67,27 @@ function GameProvider({ children }: IGameProviderProps) {
 		setLining(lining)
 	}
 
+	const resetContext = () => {
+		setPlayer(2)
+		setScore({ player1: 0, player2: 0 })
+		setWinner(null)
+		setPosition(null)
+		setLining(null)
+		setBoard([
+			[null, null, null],
+			[null, null, null],
+			[null, null, null]
+		])
+	}
+
+	const resetBoard = () => {
+		setBoard([
+			[null, null, null],
+			[null, null, null],
+			[null, null, null]
+		])
+	}
+
 	let ctx: IGameContext = {
 		state: {
 			players: players,
@@ -89,7 +110,9 @@ function GameProvider({ children }: IGameProviderProps) {
 			updateBoard,
 			updateScore,
 			setWinner,
-			setWinnerStrike
+			setWinnerStrike,
+			resetContext,
+			resetBoard
 		}
 	}
 

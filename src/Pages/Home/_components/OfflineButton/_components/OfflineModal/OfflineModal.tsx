@@ -7,10 +7,10 @@ import {
 	ModalBody,
 	ModalCloseButton,
 	Button
-} from '@chakra-ui/react'
-import { useNavigate } from 'react-router-dom'
+} from "@chakra-ui/react"
+import { useNavigate } from "react-router-dom"
 
-import { IModalProps } from '../../../../_shared/Modal-types'
+import { IModalProps } from "../../../../_shared/Modal-types"
 
 export function OfflineModal({ isOpen, onClose, ...props }: IModalProps) {
 	const navigate = useNavigate()
@@ -21,10 +21,14 @@ export function OfflineModal({ isOpen, onClose, ...props }: IModalProps) {
 			<ModalContent>
 				<ModalHeader>Offline mode</ModalHeader>
 				<ModalCloseButton />
-				<ModalBody></ModalBody>
+				<ModalBody>
+					In offline mode you'll play against an AI.
+					<br />
+					There is 3 difficlty available : easy, normal, hard.
+				</ModalBody>
 				<ModalFooter>
 					<Button onClick={onClose}>Cancel</Button>
-					<Button onClick={() => navigate('/room/offline')}>Play</Button>
+					<Button onClick={() => navigate("/offline")}>Play</Button>
 				</ModalFooter>
 			</ModalContent>
 		</Modal>
