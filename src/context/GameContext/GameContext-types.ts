@@ -6,11 +6,12 @@ interface IGameFunctions {
 	updateCurrentPlayer: () => void
 	updateScore: (player: TPlayer) => void
 	updateBoard: (player: TPlayer, row: TGridPos, column: TGridPos) => void
-	updatePlayers: (players: IPlayers) => void
+	updatePlayerName: React.Dispatch<React.SetStateAction<string>>
 	setWinner: Dispatch<SetStateAction<TPlayer | null>>
 	setWinnerStrike: (position: TLiningPos, lining: TLining) => void
 	resetContext: () => void
 	resetBoard: () => void
+	isBoardFull: () => boolean
 }
 
 type TLiningPos = "row" | "column" | "diagonal"
@@ -26,19 +27,14 @@ type TBoard = [
 ]
 
 interface IScore {
-	player1: number
-	player2: number
+	player: number
+	computer: number
 }
 
-type TPlayer = 1 | 2
-
-interface IPlayers {
-	player1: string
-	player2: string
-}
+type TPlayer = "player" | "computer"
 
 interface IGameState {
-	players: IPlayers
+	playerName: string
 	currentPlayer: TPlayer
 	score: IScore
 	board: TBoard
@@ -62,7 +58,6 @@ export type {
 	IGameProviderProps,
 	IGameContext,
 	IScore,
-	IPlayers,
 	TPlayer,
 	TBoard,
 	TGridPos,

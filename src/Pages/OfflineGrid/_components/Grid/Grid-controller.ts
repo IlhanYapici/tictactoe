@@ -8,8 +8,6 @@ function checkBoardState(ctx: IGameContext) {
 		functions: { updateCurrentPlayer }
 	} = ctx
 
-	console.log(ctx)
-
 	if (checkRows(ctx) || checkColumns(ctx) || checkDiags(ctx)) {
 		return
 	} else {

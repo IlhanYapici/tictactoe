@@ -1,35 +1,35 @@
-import { Box, Text, useColorMode } from '@chakra-ui/react'
-import { useContext } from 'react'
-import { GameContext } from '../../../../context/GameContext/GameContext'
+import { Box, Text, useColorMode } from "@chakra-ui/react"
+import { useContext } from "react"
+import { GameContext } from "../../../../context/GameContext/GameContext"
 
 function WinnerBanner() {
 	const { colorMode } = useColorMode()
 	const {
-		state: { players, winner }
+		state: { playerName, winner }
 	} = useContext(GameContext)
 
 	const getWinner = () => {
 		switch (winner) {
-			case 1:
+			case "player":
 				return (
 					<Text
 						fontSize="3rem"
 						fontWeight="bold"
-						color={colorMode === 'light' ? '#ffffff' : '#1a202c'}
+						color={colorMode === "light" ? "#ffffff" : "#1a202c"}
 					>
-						{players.player1}
+						{playerName}
 						<br />
 						wins!
 					</Text>
 				)
-			case 2:
+			case "computer":
 				return (
 					<Text
 						fontSize="3rem"
 						fontWeight="bold"
-						color={colorMode === 'light' ? '#ffffff' : '#1a202c'}
+						color={colorMode === "light" ? "#ffffff" : "#1a202c"}
 					>
-						{players.player2}
+						Computer
 						<br />
 						wins!
 					</Text>
@@ -48,7 +48,7 @@ function WinnerBanner() {
 			position="absolute"
 			w="100%"
 			h="150px"
-			backgroundColor={colorMode === 'light' ? '#1a202c' : '#ffffff'}
+			backgroundColor={colorMode === "light" ? "#1a202c" : "#ffffff"}
 		>
 			{getWinner()}
 		</Box>

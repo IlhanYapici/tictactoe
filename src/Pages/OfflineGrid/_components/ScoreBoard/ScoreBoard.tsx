@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext } from "react"
 import {
 	Box,
 	Grid,
@@ -6,15 +6,15 @@ import {
 	EditableInput,
 	EditablePreview,
 	Text
-} from '@chakra-ui/react'
+} from "@chakra-ui/react"
 
-import { Menu } from './_components/Menu/Menu'
-import { ThemeSwitch } from './_components/ThemeSwitch/ThemeSwitch'
-import { GameContext } from '../../../../context/GameContext/GameContext'
+import { Menu } from "./_components/Menu/Menu"
+import { ThemeSwitch } from "./_components/ThemeSwitch/ThemeSwitch"
+import { GameContext } from "../../../../context/GameContext/GameContext"
 
 function ScoreBoard() {
 	const {
-		state: { score, players }
+		state: { score, playerName }
 	} = useContext(GameContext)
 
 	return (
@@ -30,7 +30,7 @@ function ScoreBoard() {
 				borderBottom="0.2rem solid #3182ce"
 			>
 				<Menu />
-				<Text>{players.player1}</Text>
+				<Text>{playerName}</Text>
 
 				<Box
 					w="100%"
@@ -43,15 +43,15 @@ function ScoreBoard() {
 					color="#fff"
 				>
 					<Text lineHeight={1} height="fit-content">
-						{score.player1}
+						{score.player}
 					</Text>
 					-
 					<Text lineHeight={1} height="fit-content">
-						{score.player2}
+						{score.computer}
 					</Text>
 				</Box>
 
-				<Text>{players.player2}</Text>
+				<Text>Computer</Text>
 				<ThemeSwitch />
 			</Grid>
 		</Box>

@@ -4,7 +4,6 @@ import {
 	IGameProviderProps,
 	IGameContext,
 	IScore,
-	IPlayers,
 	TPlayer,
 	TBoard,
 	TGridPos,
@@ -15,18 +14,15 @@ import {
 const GameContext = createContext({} as IGameContext)
 
 function GameProvider({ children }: IGameProviderProps) {
-	const [players, setPlayers] = useState<IPlayers>({
-		player1: "Player 1",
-		player2: "Player 2"
-	})
+	const [playerName, setPlayerName] = useState<string>("Player")
 
 	/**
 	 * Setting current player as 2 because useEffect in Grid component
 	 * will trigger updateCurrentPlayer.
 	 */
-	const [player, setPlayer] = useState<TPlayer>(2)
+	const [player, setPlayer] = useState<TPlayer>("player")
 	const [winner, setWinner] = useState<TPlayer | null>(null)
-	const [score, setScore] = useState<IScore>({ player1: 0, player2: 0 })
+	const [score, setScore] = useState<IScore>({ player: 0, computer: 0 })
 	const [position, setPosition] = useState<TLiningPos | null>(null)
 	const [lining, setLining] = useState<TLining | null>(null)
 	const [board, setBoard] = useState<TBoard>([
@@ -35,11 +31,17 @@ function GameProvider({ children }: IGameProviderProps) {
 		[null, null, null]
 	])
 
+	const isBoardFull = () => {
+		const boardFull = board.every((row) => row.every((cell) => cell !== null))
+
+		return boardFull
+	}
+
 	const updateCurrentPlayer = () => {
-		if (player === 1) {
-			setPlayer(2)
+		if (player === "player") {
+			setPlayer("computer")
 		} else {
-			setPlayer(1)
+			setPlayer("player")
 		}
 	}
 
@@ -53,11 +55,11 @@ function GameProvider({ children }: IGameProviderProps) {
 
 	const updateScore = (player: TPlayer) => {
 		switch (player) {
-			case 1:
-				setScore({ ...score, player1: score.player1 + 1 })
+			case "player":
+				setScore({ ...score, player: score.player + 1 })
 				break
-			case 2:
-				setScore({ ...score, player2: score.player2 + 1 })
+			case "computer":
+				setScore({ ...score, computer: score.computer + 1 })
 				break
 		}
 	}
@@ -68,8 +70,8 @@ function GameProvider({ children }: IGameProviderProps) {
 	}
 
 	const resetContext = () => {
-		setPlayer(2)
-		setScore({ player1: 0, player2: 0 })
+		setPlayer("player")
+		setScore({ player: 0, computer: 0 })
 		setWinner(null)
 		setPosition(null)
 		setLining(null)
@@ -90,12 +92,12 @@ function GameProvider({ children }: IGameProviderProps) {
 
 	let ctx: IGameContext = {
 		state: {
-			players: players,
+			playerName: playerName,
 			currentPlayer: player,
 			board: board,
 			score: {
-				player1: score.player1,
-				player2: score.player2
+				player: score.player,
+				computer: score.computer
 			},
 			winner: winner,
 			winnerStrike: {
@@ -104,14 +106,15 @@ function GameProvider({ children }: IGameProviderProps) {
 			}
 		},
 		functions: {
-			updatePlayers: setPlayers,
+			updatePlayerName: setPlayerName,
 			updateCurrentPlayer,
 			updateBoard,
 			updateScore,
 			setWinner,
 			setWinnerStrike,
 			resetContext,
-			resetBoard
+			resetBoard,
+			isBoardFull
 		}
 	}
 
