@@ -56,7 +56,6 @@ export function AiProvider({ children }: IAiProviderProps) {
 				best = Math.min(best, score)
 
 				if (depth === 0) {
-					console.log(nodesMap)
 					const moves = nodesMap[score] ? `${nodesMap[score]},${index}` : index
 					nodesMap[score] = moves
 				}

@@ -46,9 +46,7 @@ export function handleClick(
 	setBoard(newBoard)
 
 	if (isBoardTerminal(board).winner === "player") {
-		console.log(isBoardTerminal(newBoard))
 		setWinner("player")
-		console.log("player wins")
 		updateScore("player")
 		return
 	}
@@ -64,9 +62,7 @@ export function handleClick(
 	setBoard(newBoard)
 
 	if (isBoardTerminal(newBoard).winner === "computer") {
-		console.log(isBoardTerminal(newBoard))
 		setWinner("computer")
-		console.log("computer wins")
 		updateScore("computer")
 		return
 	}

@@ -1,19 +1,13 @@
-import { useEffect, useContext } from "react"
 import { Grid } from "@chakra-ui/react"
 
 import { handleClick } from "./Grid-controller"
 import { Tile } from "./_components/Tile/Tile"
 import { TDataId } from "./_components/Tile/Tile-types"
 import { Background } from "./_components/Background/Background"
-import { GameContext } from "../../../../context/GameContext/GameContext"
 import { WinningStrike } from "./_components/WinningStrike/WinningStrike"
 import { TGridPos } from "../../../../context/GameContext/GameContext-types"
 
 function GridContainer() {
-	const {
-		state: { board }
-	} = useContext(GameContext)
-
 	const setupGrid = () => {
 		const grid = []
 
@@ -26,10 +20,6 @@ function GridContainer() {
 
 		return grid
 	}
-
-	useEffect(() => {
-		console.log(board)
-	}, [board])
 
 	return (
 		<Grid
