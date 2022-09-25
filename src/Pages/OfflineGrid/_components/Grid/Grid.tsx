@@ -1,36 +1,34 @@
 import { useEffect, useContext } from "react"
 import { Grid } from "@chakra-ui/react"
 
-import { checkBoardState } from "./Grid-controller"
+import { handleClick } from "./Grid-controller"
 import { Tile } from "./_components/Tile/Tile"
 import { TDataId } from "./_components/Tile/Tile-types"
 import { Background } from "./_components/Background/Background"
 import { GameContext } from "../../../../context/GameContext/GameContext"
 import { WinningStrike } from "./_components/WinningStrike/WinningStrike"
+import { TGridPos } from "../../../../context/GameContext/GameContext-types"
 
 function GridContainer() {
-	const ctx = useContext(GameContext)
 	const {
-		state: { winner, board }
-	} = ctx
+		state: { board }
+	} = useContext(GameContext)
 
 	const setupGrid = () => {
 		const grid = []
 
-		for (let i = 0; i < 3; i++) {
-			for (let j = 0; j < 3; j++) {
-				const dataId = `row${i}-col${j}` as unknown as TDataId
-				grid.push(<Tile key={"gridItem" + i + j} dataId={dataId} />)
-			}
+		for (let i = 0; i < 9; i++) {
+			const dataId: TDataId = `index:${i as TGridPos}`
+			grid.push(
+				<Tile key={"gridItem" + i} dataId={dataId} handleClick={handleClick} />
+			)
 		}
 
 		return grid
 	}
 
 	useEffect(() => {
-		if (winner === null) {
-			checkBoardState(ctx)
-		}
+		console.log(board)
 	}, [board])
 
 	return (
@@ -43,7 +41,7 @@ function GridContainer() {
 			placeItems="center"
 			gap="2vh"
 		>
-			<WinningStrike />
+			{/* <WinningStrike /> */}
 			{setupGrid()}
 			<Background />
 		</Grid>

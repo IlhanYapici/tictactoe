@@ -1,38 +1,49 @@
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import { GridItem, Box } from "@chakra-ui/react"
 
 import { ITileProps } from "./Tile-types"
-import { useDataId, usePlayerIcon } from "./Tile-controller"
+import { useDataId, usePlayerIcon } from "./Tile-utils"
 import { GameContext } from "../../../../../../context/GameContext/GameContext"
 
 import "./Tile-styles.css"
+import { AiContext } from "../../../../../../context/AiContext/AiContext"
 
-function Tile({ dataId, ...props }: ITileProps) {
+function Tile({ dataId, handleClick, ...props }: ITileProps) {
 	const [clicked, setClicked] = useState<boolean>(false)
 	const [icon, setIcon] = useState<JSX.Element | null>(null)
+	const gameCtx = useContext(GameContext)
 	const {
-		state: { currentPlayer, board, winner },
-		functions: { updateBoard }
-	} = useContext(GameContext)
-	const [row, column] = useDataId(dataId)
+		functions: { getBestMove }
+	} = useContext(AiContext)
+	const {
+		state: { currentPlayer, board, winner }
+	} = gameCtx
+
+	const index = useDataId(dataId)
 
 	const onClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		e.preventDefault()
 
-		if (clicked === true || winner !== null) {
-			return
-		}
+		if (clicked) return
 
-		updateBoard(currentPlayer, row, column)
-		const icon = usePlayerIcon(dataId, board)
-		setIcon(icon)
+		handleClick(e, index, gameCtx, getBestMove)
 
 		setClicked(true)
 	}
 
 	let classNames =
 		"grid-tile " +
-		(clicked || winner !== null ? "disabled-tile" : "enabled-tile")
+		(clicked || winner !== null || currentPlayer === "computer"
+			? "disabled-tile"
+			: "enabled-tile")
+
+	useEffect(() => {
+		if (icon === null) {
+			const icon = usePlayerIcon(dataId, board)
+			setIcon(icon)
+			setClicked(icon !== null)
+		}
+	}, [board])
 
 	return (
 		<GridItem

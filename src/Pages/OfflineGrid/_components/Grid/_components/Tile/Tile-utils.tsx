@@ -8,22 +8,15 @@ import {
 } from "../../../../../../context/GameContext/GameContext-types"
 
 function useDataId(dataId: TDataId) {
-	const pos = dataId
-		.split("-")
-		.join("")
-		.replace(/\D/g, "")
-		.split("") as unknown as [TGridPos, TGridPos]
+	const index = dataId.split(":")[1]
 
-	const row = pos[0]
-	const column = pos[1]
-
-	return [row, column]
+	return index as unknown as TGridPos
 }
 
 function usePlayerIcon(dataId: TDataId, board: TBoard) {
-	const [row, column] = useDataId(dataId)
+	const index = useDataId(dataId)
 
-	const player = board[row][column]
+	const player = board[index]
 
 	switch (player) {
 		case "player":

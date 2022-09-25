@@ -1,17 +1,23 @@
 import { Dispatch, ReactNode, SetStateAction } from "react"
 
-type TGridPos = 0 | 1 | 2
+type TAvailableMoves = TGridPos[]
+
+type TGridPos = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
 
 interface IGameFunctions {
-	updateCurrentPlayer: () => void
+	updateCurrentPlayer: (player: TPlayer) => void
 	updateScore: (player: TPlayer) => void
-	updateBoard: (player: TPlayer, row: TGridPos, column: TGridPos) => void
+	updateBoard: (player: TPlayer, index: TGridPos) => void
 	updatePlayerName: React.Dispatch<React.SetStateAction<string>>
+	setBoard: React.Dispatch<React.SetStateAction<TBoard>>
 	setWinner: Dispatch<SetStateAction<TPlayer | null>>
 	setWinnerStrike: (position: TLiningPos, lining: TLining) => void
 	resetContext: () => void
 	resetBoard: () => void
-	isBoardFull: () => boolean
+	isBoardEmpty: (board: TBoard) => boolean
+	isBoardFull: (board: TBoard) => boolean
+	isBoardTerminal: (board: TBoard) => boolean | any
+	getAvailableMoves: (board: TBoard) => TAvailableMoves
 }
 
 type TLiningPos = "row" | "column" | "diagonal"
@@ -20,11 +26,7 @@ type TLining = TGridPos | "topLeftBottomRight" | "bottomLeftTopRight"
 
 type TBoardItem = TPlayer | null
 
-type TBoard = [
-	[TBoardItem, TBoardItem, TBoardItem],
-	[TBoardItem, TBoardItem, TBoardItem],
-	[TBoardItem, TBoardItem, TBoardItem]
-]
+type TBoard = Array<TBoardItem>
 
 interface IScore {
 	player: number
@@ -60,7 +62,9 @@ export type {
 	IScore,
 	TPlayer,
 	TBoard,
+	TBoardItem,
 	TGridPos,
 	TLining,
-	TLiningPos
+	TLiningPos,
+	TAvailableMoves
 }
